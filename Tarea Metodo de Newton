@@ -1,0 +1,160 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOFhz5rhdjTHJnFgz2hZ5ph",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/callejas-omar/Metodos-Numericos1/blob/main/Tarea%20Metodo%20de%20Newton\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "id": "Jw6f1kDnEDkY"
+      },
+      "outputs": [],
+      "source": [
+        "from math import *\n",
+        "import numpy as np\n",
+        "import matplotlib . pyplot as plt"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def f(x):\n",
+        "  return x**3 - x - 1"
+      ],
+      "metadata": {
+        "id": "e5EjnufmHTBM"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def df(x):\n",
+        "  return 3*x**2 - 1"
+      ],
+      "metadata": {
+        "id": "kwNPQXmhOuso"
+      },
+      "execution_count": 5,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Para usar el metodo necesitamos una funcion y su derivada, en este caso...\n",
+        "$f(x) = x^3 - x -1$ su derivada $f'(x) = 3x^2 - 1$"
+      ],
+      "metadata": {
+        "id": "wenMh5i7PBQl"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tol = 0.01 #Tolerancia\n",
+        "nmax = 100 #Max de Iteraciones\n",
+        "error = 100"
+      ],
+      "metadata": {
+        "id": "Ywp4jmZ3HV7P"
+      },
+      "execution_count": 8,
+      "outputs": []
+    },
+    {
+      "source": [
+        "#Iniciamos metodo de Newton\n",
+        "\n",
+        "def newton(x0, tol):\n",
+        "  resultados = [] # Define resultados dentro del ámbito de la función\n",
+        "  x0 = 1 #Aprox incial\n",
+        "  niter = 0 #Inicio de iteracion\n",
+        "\n",
+        "  while True:\n",
+        "    x1 = x0 - (f(x0) / df(x0)) #Formula de Newton\n",
+        "    niter += 1\n",
+        "    resultados.append([niter, x1])\n",
+        "    if abs(x1 - x0) < tol:\n",
+        "      break\n",
+        "    x0 = x1\n",
+        "  return resultados\n",
+        "\n",
+        "x0 = 1 #Aprox inicial\n",
+        "tol = 0.01 #Tolerancia\n",
+        "resultados = newton(x0, tol)\n",
+        "\n",
+        "print(\"Iteración | Valor\")\n",
+        "print(\"------------------\")\n",
+        "for iteracion, valor in resultados:\n",
+        "  print(f\"{iteracion}        | {valor:.6f}\")"
+      ],
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BupunbMhVP3T",
+        "outputId": "3e561199-29d8-4a8c-9675-7690d357f9ac"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Iteración | Valor\n",
+            "------------------\n",
+            "1        | 1.500000\n",
+            "2        | 1.347826\n",
+            "3        | 1.325200\n",
+            "4        | 1.324718\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "En este proceso ocupamos un funcion y la derivada de esta. \\\\\n",
+        "$f(x) = x^3 - x - 1 $ \\\\\n",
+        "$f'(x) = 3x^2 - 1$ \\\\\n",
+        "El problema nos da una primera aproximacion a la raiz ($p0 = 1$), asi que para obtener $p1$ hacemos lo siguiente. \\\\\n",
+        "$p1 = p0 - ( \\frac{f(p0)}{f'(p0)})$ \\\\\n",
+        "\n",
+        "\\\\\n",
+        "Teniendo $p1$ calculamos el error entre $p0$ y $p1$, con la siguiente operacion.\n",
+        "\n",
+        "$Error = |p0 - p1|$ \\\\\n",
+        "Aqui si la diferencia de estos es mayor o igual a $0.01$ entonces se dice que hallamos una solucion aproximada, en caso de no ser asi, el proceso se repetiria hasta cumplir la condicion anterior."
+      ],
+      "metadata": {
+        "id": "h0YyD8U2Whkh"
+      }
+    }
+  ]
+}
