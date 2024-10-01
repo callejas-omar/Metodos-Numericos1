@@ -1,0 +1,159 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPlrrIBbuJEeYH476AP2rJA",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/callejas-omar/Metodos-Numericos1/blob/main/Tarea%3A%20Punto%20Medio\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from math import *\n",
+        "import numpy as np\n",
+        "import pandas as pd #trabajar con conjuntos de datos"
+      ],
+      "metadata": {
+        "id": "45DaE53lCja4"
+      },
+      "execution_count": 63,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def f(x):\n",
+        "  return x**3 - x - 1"
+      ],
+      "metadata": {
+        "id": "rtGRa2vyFG6M"
+      },
+      "execution_count": 64,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def g(x):\n",
+        "  return (x + 1)**(1/3)"
+      ],
+      "metadata": {
+        "id": "rEG7SbuhFLO_"
+      },
+      "execution_count": 65,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Sabiendo que $f(x) = x^3 -x - 1$ , si igualamos $f(x)=0$ y despejamos a la variable $x^3$ y la llamamos $g(x)$, entonces queda definida de la siguiente forma..."
+      ],
+      "metadata": {
+        "id": "bStFxuIdFTEp"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "$g(x) = \\sqrt[3]{x + 1}$"
+      ],
+      "metadata": {
+        "id": "C0ovGKYIFy-P"
+      }
+    },
+    {
+      "source": [
+        "\n",
+        "# Valores Iniciales\n",
+        "x0 = 1\n",
+        "tol = 1e-2 # Tolerance = 10^-2\n",
+        "nmax = 100\n",
+        "niter = 0\n",
+        "error = 1\n",
+        "\n",
+        "# Listas para guardar datos\n",
+        "niter_list = []\n",
+        "x_list = []\n",
+        "gx_list = []\n",
+        "error_list = []\n",
+        "\n",
+        "while error > tol and niter < nmax:\n",
+        "  x1 = g(x0)\n",
+        "  error = abs(x1 - x0)\n",
+        "\n",
+        "  niter_list.append(niter)\n",
+        "  x_list.append(x0)\n",
+        "  gx_list.append(x1)\n",
+        "  error_list.append(error)\n",
+        "\n",
+        "  x0 = x1\n",
+        "  niter += 1\n",
+        "\n",
+        "# Creacion de la tablas\n",
+        "df = pd.DataFrame({\n",
+        "    'Iteración': niter_list,\n",
+        "    'x': x_list,\n",
+        "    'g(x)': gx_list,\n",
+        "    'Error': error_list\n",
+        "})\n",
+        "\n",
+        "print(df)\n",
+        "\n",
+        "print('\\nRaíz aproximada:', x1)"
+      ],
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qCeavhBEEPTQ",
+        "outputId": "427c9602-a27a-4db9-fe46-ae17a70c05ec"
+      },
+      "execution_count": 67,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "   Iteración         x      g(x)     Error\n",
+            "0          0  1.000000  1.259921  0.259921\n",
+            "1          1  1.259921  1.312294  0.052373\n",
+            "2          2  1.312294  1.322354  0.010060\n",
+            "3          3  1.322354  1.324269  0.001915\n",
+            "\n",
+            "Raíz aproximada: 1.324268744551578\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "FEXxYqmxEPvc"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
