@@ -4,8 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyOFhz5rhdjTHJnFgz2hZ5ph",
-      "include_colab_link": true
+      "authorship_tag": "ABX9TyMVK8NYm2QUy125t/Wtqbx4"
     },
     "kernelspec": {
       "name": "python3",
@@ -17,18 +16,8 @@
   },
   "cells": [
     {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/callejas-omar/Metodos-Numericos1/blob/main/Tarea%20Metodo%20de%20Newton\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
       "cell_type": "code",
-      "execution_count": 1,
+      "execution_count": 7,
       "metadata": {
         "id": "Jw6f1kDnEDkY"
       },
@@ -48,7 +37,7 @@
       "metadata": {
         "id": "e5EjnufmHTBM"
       },
-      "execution_count": 2,
+      "execution_count": 8,
       "outputs": []
     },
     {
@@ -60,7 +49,7 @@
       "metadata": {
         "id": "kwNPQXmhOuso"
       },
-      "execution_count": 5,
+      "execution_count": 9,
       "outputs": []
     },
     {
@@ -83,7 +72,7 @@
       "metadata": {
         "id": "Ywp4jmZ3HV7P"
       },
-      "execution_count": 8,
+      "execution_count": 10,
       "outputs": []
     },
     {
@@ -92,7 +81,7 @@
         "\n",
         "def newton(x0, tol):\n",
         "  resultados = [] # Define resultados dentro del ámbito de la función\n",
-        "  x0 = 1 #Aprox incial\n",
+        "   ##x0 = 1 #Aprox incial\n",
         "  niter = 0 #Inicio de iteracion\n",
         "\n",
         "  while True:\n",
@@ -119,9 +108,9 @@
           "base_uri": "https://localhost:8080/"
         },
         "id": "BupunbMhVP3T",
-        "outputId": "3e561199-29d8-4a8c-9675-7690d357f9ac"
+        "outputId": "3d007597-6a88-433e-b9bc-dfcb2820aeca"
       },
-      "execution_count": 17,
+      "execution_count": 12,
       "outputs": [
         {
           "output_type": "stream",
